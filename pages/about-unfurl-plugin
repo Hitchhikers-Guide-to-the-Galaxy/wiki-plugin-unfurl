@@ -1,0 +1,77 @@
+{
+  "title": "About Unfurl Plugin",
+  "story": [
+    {
+      "type": "markdown",
+      "id": "31865cd78185add3",
+      "text": "The **Unfurl Outpost** answers `GET /system/unfurl.json?url=\u2026` with a normalised, static link-preview card \u2014 title, description, provider, author, type, an inlined thumbnail and a favicon. It is the server half that used to live inside the [[Hitchhiker Plugin]], moved out so that one well-resourced host carries the two heavy extractor libraries and every other farm carries none."
+    },
+    {
+      "type": "markdown",
+      "id": "c0e748965cdf1869",
+      "text": "## Why it is separate\n\nThe extractors load about 14 MB of heap. Inside the Hitchhiker Plugin that cost was paid in the shared farm process on every host, on every site, whether or not anyone ever asked for a preview. As an [[Outpost]] it is paid once, on the host that chose to run it. Other farms install `wiki-plugin-hitchhiker`, which is now a thin client: it asks an Outpost, and when none answers it returns the minimal card. Absence is a normal state."
+    },
+    {
+      "type": "markdown",
+      "id": "f13de150bbfbb158",
+      "text": "## Install\n\nOn the host that will serve previews \u2014 one with memory to spare:\n\n    npm install --prefix \"$(npm root -g)/wiki\" wiki-plugin-unfurl\n\nthen restart that farm. Point other farms at it with `status/outpost.json` on each site \u2014 see [[Outpost]]."
+    },
+    {
+      "type": "markdown",
+      "id": "17e20e3c4a579965",
+      "text": "## Safety\n\nPublic `http`/`https` only. Private, loopback and link-local ranges and `*.localhost`, `.local`, `.internal` are refused before any fetch. The OpenGraph and thumbnail fetches walk redirects by hand and re-check every hop, so a public host cannot 302 the service onto an internal address. The oEmbed endpoint hop is the library's own and is documented as the residual.\n\nThis is, by design, a service that fetches what it is told to. **Do not expose it on a public IP without an API key in front of it** \u2014 the [[Farm Gate]] convention, `status/api-keys.json`, is the intended door."
+    },
+    {
+      "type": "markdown",
+      "id": "00b6501413438dfb",
+      "text": "## Repositories\n\n- [https://github.com/Hitchhikers-Guide-to-the-Galaxy/wiki-plugin-unfurl wiki-plugin-unfurl on GitHub]\n- [https://www.npmjs.com/package/wiki-plugin-unfurl wiki-plugin-unfurl on npm]"
+    },
+    {
+      "type": "markdown",
+      "id": "953d0ff878c101ed",
+      "text": "## See\n\n- [[Outpost]]\n- [[Hitchhiker Plugin]]\n- [[Loose Coupling]]"
+    }
+  ],
+  "plugin": "unfurl",
+  "journal": [
+    {
+      "type": "create",
+      "item": {
+        "title": "About Unfurl Plugin",
+        "story": [
+          {
+            "type": "markdown",
+            "id": "31865cd78185add3",
+            "text": "The **Unfurl Outpost** answers `GET /system/unfurl.json?url=\u2026` with a normalised, static link-preview card \u2014 title, description, provider, author, type, an inlined thumbnail and a favicon. It is the server half that used to live inside the [[Hitchhiker Plugin]], moved out so that one well-resourced host carries the two heavy extractor libraries and every other farm carries none."
+          },
+          {
+            "type": "markdown",
+            "id": "c0e748965cdf1869",
+            "text": "## Why it is separate\n\nThe extractors load about 14 MB of heap. Inside the Hitchhiker Plugin that cost was paid in the shared farm process on every host, on every site, whether or not anyone ever asked for a preview. As an [[Outpost]] it is paid once, on the host that chose to run it. Other farms install `wiki-plugin-hitchhiker`, which is now a thin client: it asks an Outpost, and when none answers it returns the minimal card. Absence is a normal state."
+          },
+          {
+            "type": "markdown",
+            "id": "f13de150bbfbb158",
+            "text": "## Install\n\nOn the host that will serve previews \u2014 one with memory to spare:\n\n    npm install --prefix \"$(npm root -g)/wiki\" wiki-plugin-unfurl\n\nthen restart that farm. Point other farms at it with `status/outpost.json` on each site \u2014 see [[Outpost]]."
+          },
+          {
+            "type": "markdown",
+            "id": "17e20e3c4a579965",
+            "text": "## Safety\n\nPublic `http`/`https` only. Private, loopback and link-local ranges and `*.localhost`, `.local`, `.internal` are refused before any fetch. The OpenGraph and thumbnail fetches walk redirects by hand and re-check every hop, so a public host cannot 302 the service onto an internal address. The oEmbed endpoint hop is the library's own and is documented as the residual.\n\nThis is, by design, a service that fetches what it is told to. **Do not expose it on a public IP without an API key in front of it** \u2014 the [[Farm Gate]] convention, `status/api-keys.json`, is the intended door."
+          },
+          {
+            "type": "markdown",
+            "id": "00b6501413438dfb",
+            "text": "## Repositories\n\n- [https://github.com/Hitchhikers-Guide-to-the-Galaxy/wiki-plugin-unfurl wiki-plugin-unfurl on GitHub]\n- [https://www.npmjs.com/package/wiki-plugin-unfurl wiki-plugin-unfurl on npm]"
+          },
+          {
+            "type": "markdown",
+            "id": "953d0ff878c101ed",
+            "text": "## See\n\n- [[Outpost]]\n- [[Hitchhiker Plugin]]\n- [[Loose Coupling]]"
+          }
+        ]
+      },
+      "date": 1787098000000
+    }
+  ]
+}
