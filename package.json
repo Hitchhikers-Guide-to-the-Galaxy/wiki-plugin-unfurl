@@ -1,7 +1,7 @@
 {
   "name": "wiki-plugin-unfurl",
-  "version": "0.1.0",
-  "description": "Link-preview Outpost for federated wiki: GET /system/unfurl.json?url=\u2026 returns a normalised static card. Carries the heavy extractor libraries so other farms need not; install on one well-resourced host and point wiki-plugin-hitchhiker at it.",
+  "version": "0.1.1",
+  "description": "Link-preview Outpost for federated wiki: GET /system/unfurl.json?url=… returns a normalised static card. Carries the heavy extractor libraries so other farms need not; install on one well-resourced host and point wiki-plugin-hitchhiker at it.",
   "type": "module",
   "files": [
     "server",
@@ -23,6 +23,16 @@
     "url": "https://github.com/Hitchhikers-Guide-to-the-Galaxy/wiki-plugin-unfurl/issues"
   },
   "homepage": "https://github.com/Hitchhikers-Guide-to-the-Galaxy/wiki-plugin-unfurl#readme",
+  "fedwiki": {
+    "provides": {
+      "seats": [
+        "unfurl"
+      ],
+      "services": [
+        "unfurl"
+      ]
+    }
+  },
   "author": "David Bovill",
   "license": "MIT",
   "keywords": [
